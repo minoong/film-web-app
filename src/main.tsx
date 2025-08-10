@@ -1,22 +1,10 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Theme } from '@radix-ui/themes';
-import '@radix-ui/themes/styles.css';
-import './main.css';
-import App from './App.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router';
+import { routes } from './app/routes';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-  },
-]);
+/**
+ * React Router v7 Framework Mode를 활용한 라우터 설정
+ */
+const router = createBrowserRouter(routes);
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <Theme>
-      <RouterProvider router={router} />
-    </Theme>
-  </StrictMode>
-);
+createRoot(document.getElementById('root')!).render(<RouterProvider router={router} />);

@@ -1,5 +1,6 @@
 import { Box, Container, Flex, Heading, IconButton, Text } from '@radix-ui/themes';
 import { HamburgerMenuIcon, CameraIcon } from '@radix-ui/react-icons';
+import { Link, useLocation } from 'react-router';
 import { useSpyElem } from '@/shared/lib/hooks';
 
 export const Header = () => {
@@ -7,6 +8,14 @@ export const Header = () => {
     elemHeight: 60,
     threshold: 50,
   });
+  const location = useLocation();
+
+  // 현재 경로에 따른 활성 상태 확인
+  const isActive = (path: string) => {
+    if (path === '/' && location.pathname === '/') return true;
+    if (path !== '/' && location.pathname.startsWith(path)) return true;
+    return false;
+  };
 
   return (
     <Box
@@ -31,9 +40,11 @@ export const Header = () => {
               {/* Logo */}
               <Flex align="center" gap="2" style={{ minWidth: 0, flex: '0 0 auto' }}>
                 <CameraIcon width="20" height="20" />
-                <Heading size="4" weight="bold" style={{ whiteSpace: 'nowrap' }}>
-                  Se-kai Film Recipes
-                </Heading>
+                <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <Heading size="4" weight="bold" style={{ whiteSpace: 'nowrap' }}>
+                    Fuji Film Recipes
+                  </Heading>
+                </Link>
               </Flex>
 
               {/* Mobile Menu Button */}
@@ -45,15 +56,42 @@ export const Header = () => {
 
               {/* Desktop Navigation */}
               <Flex gap="4" align="center" display={{ initial: 'none', md: 'flex' }} style={{ flex: '0 0 auto' }}>
-                <Text size="2" weight="medium" style={{ cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                  레시피
-                </Text>
-                <Text size="2" weight="medium" style={{ cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                  인기
-                </Text>
-                <Text size="2" weight="medium" style={{ cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                  즐겨찾기
-                </Text>
+                <Link to="/recipes" style={{ textDecoration: 'none' }}>
+                  <Text
+                    size="2"
+                    weight="medium"
+                    style={{
+                      whiteSpace: 'nowrap',
+                      color: isActive('/recipes') ? 'var(--accent-9)' : 'inherit',
+                    }}
+                  >
+                    레시피
+                  </Text>
+                </Link>
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                  <Text
+                    size="2"
+                    weight="medium"
+                    style={{
+                      whiteSpace: 'nowrap',
+                      color: isActive('/') ? 'var(--accent-9)' : 'inherit',
+                    }}
+                  >
+                    인기
+                  </Text>
+                </Link>
+                <Link to="/favorites" style={{ textDecoration: 'none' }}>
+                  <Text
+                    size="2"
+                    weight="medium"
+                    style={{
+                      whiteSpace: 'nowrap',
+                      color: isActive('/favorites') ? 'var(--accent-9)' : 'inherit',
+                    }}
+                  >
+                    즐겨찾기
+                  </Text>
+                </Link>
                 <Text size="2" weight="medium" style={{ cursor: 'pointer', whiteSpace: 'nowrap' }}>
                   설정
                 </Text>
