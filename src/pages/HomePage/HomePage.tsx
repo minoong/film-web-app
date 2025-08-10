@@ -38,40 +38,54 @@ export const HomePage = () => {
       {/* Hero Section */}
       <Box py="8">
         <Flex direction="column" align="center" gap="6" style={{ textAlign: 'center' }}>
-          <Heading size="8" weight="bold">
+          <Heading size={{ initial: '6', md: '8' }} weight="bold" style={{ lineHeight: '1.2' }}>
             후지필름 시뮬레이션 레시피
           </Heading>
-          <Text size="5" color="gray" style={{ maxWidth: '600px' }}>
+          <Text
+            size={{ initial: '3', md: '5' }}
+            color="gray"
+            style={{
+              maxWidth: '600px',
+              lineHeight: '1.5',
+              padding: '0 16px',
+            }}
+          >
             모바일에서 간편하게 사용할 수 있는 후지필름 카메라 설정 레시피를 찾아보세요
           </Text>
 
           {/* Search Bar */}
-          <Box style={{ width: '100%', maxWidth: '500px' }}>
-            <Flex gap="2">
+          <Box style={{ width: '100%', maxWidth: '500px', padding: '0 16px' }}>
+            <Flex gap={{ initial: '2', md: '3' }} direction={{ initial: 'column', sm: 'row' }}>
               <Box style={{ flex: 1, position: 'relative' }}>
                 <input
                   type="text"
                   placeholder="레시피 검색..."
                   style={{
-                    padding: '12px 16px 12px 40px',
-                    borderRadius: '6px',
+                    width: '100%',
+                    padding: '14px 16px 14px 44px',
+                    borderRadius: '8px',
                     border: '1px solid var(--color-border)',
                     fontSize: '16px',
+                    backgroundColor: 'var(--color-surface)',
+                    outline: 'none',
+                    transition: 'all 0.2s ease',
                   }}
                 />
                 <MagnifyingGlassIcon
                   style={{
                     position: 'absolute',
-                    left: '12px',
+                    left: '14px',
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    color: 'var(--color-text-low-contrast)',
+                    color: 'var(--gray-9)',
                   }}
-                  width="16"
-                  height="16"
+                  width="18"
+                  height="18"
                 />
               </Box>
-              <Button size="3">검색</Button>
+              <Button size={{ initial: '3', md: '3' }} style={{ minWidth: '80px' }}>
+                검색
+              </Button>
             </Flex>
           </Box>
         </Flex>
