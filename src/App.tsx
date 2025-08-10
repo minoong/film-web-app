@@ -1,31 +1,13 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import { Button } from '@radix-ui/themes';
+import { Layout } from '@/shared/ui/Layout';
+import { Header } from '@/widgets/Header';
+import { Footer } from '@/widgets/Footer';
+import { HomePage } from '@/pages/HomePage';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div>
-        <Button>Test Button</Button>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <Layout header={<Header />} footer={<Footer />}>
+      <HomePage />
+    </Layout>
   );
 }
 
