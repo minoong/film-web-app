@@ -111,6 +111,20 @@ export const Header = () => {
                       즐겨찾기
                     </Text>
                   </Link>
+                  <Link to="/photo-editor" style={{ textDecoration: 'none' }}>
+                    <Text
+                      size="2"
+                      weight="medium"
+                      style={{
+                        whiteSpace: 'nowrap',
+                        color: isActive('/photo-editor') ? 'var(--teal-9)' : 'rgba(255,255,255,0.9)',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
+                        transition: 'color 0.2s ease',
+                      }}
+                    >
+                      포토 에디터
+                    </Text>
+                  </Link>
                   <Text
                     size="2"
                     weight="medium"

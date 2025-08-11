@@ -3,6 +3,7 @@ import Root from './root';
 import HomePage from '../pages/HomePage/route';
 import { RecipesPage } from '../pages/RecipesPage';
 import { FavoritesPage } from '../pages/FavoritesPage';
+import { PhotoEditorPage } from '../pages/PhotoEditorPage';
 import { ROUTES } from '@/shared/config';
 
 /**
@@ -25,6 +26,10 @@ export const routes: RouteObject[] = [
       {
         path: ROUTES.FAVORITES.slice(1), // Remove leading slash for nested routes
         element: <FavoritesPage />,
+      },
+      {
+        path: 'photo-editor',
+        element: <PhotoEditorPage />,
       },
       // 추후 추가 예정 라우트들
       // {

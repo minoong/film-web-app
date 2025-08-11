@@ -1,6 +1,14 @@
 import { useEffect } from 'react';
 import { Box, Flex, Text, IconButton, Separator, Badge } from '@radix-ui/themes';
-import { Cross2Icon, HomeIcon, BookmarkIcon, CookieIcon, GearIcon, PersonIcon } from '@radix-ui/react-icons';
+import {
+  Cross2Icon,
+  HomeIcon,
+  BookmarkIcon,
+  CookieIcon,
+  GearIcon,
+  PersonIcon,
+  CameraIcon,
+} from '@radix-ui/react-icons';
 import { Link, useLocation } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import { ROUTES, APP } from '@/shared/config';
@@ -64,6 +72,13 @@ export const MobileDrawer = ({ isOpen, onClose }: MobileDrawerProps) => {
       icon: <BookmarkIcon width="18" height="18" />,
       label: '즐겨찾기',
       description: '저장한 레시피 모음',
+    },
+    {
+      to: '/photo-editor',
+      icon: <CameraIcon width="18" height="18" />,
+      label: '포토 에디터',
+      description: '필름 시뮬레이션 사진 편집',
+      badge: 'New',
     },
   ];
 
