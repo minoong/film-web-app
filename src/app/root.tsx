@@ -4,6 +4,7 @@ import { Outlet } from 'react-router';
 import { Layout } from '@/shared/ui/Layout';
 import { Header } from '@/widgets/Header';
 import { Footer } from '@/widgets/Footer';
+import { PWAPrompt } from '@/widgets/PWAPrompt';
 import '@radix-ui/themes/styles.css';
 import '../main.css';
 
@@ -17,6 +18,7 @@ export default function Root() {
       <Theme accentColor="teal" grayColor="slate">
         <Layout header={<Header />} footer={<Footer />}>
           <Outlet />
+          <PWAPrompt />
         </Layout>
       </Theme>
     </StrictMode>
