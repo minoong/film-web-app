@@ -1,5 +1,7 @@
-import { Box, Container, Flex, Heading, Text, Button, Card, Badge } from '@radix-ui/themes';
+import { Box, Container, Flex, Heading, Text, Button, Card, Badge, TextField } from '@radix-ui/themes';
 import { MagnifyingGlassIcon, HeartIcon, StarIcon } from '@radix-ui/react-icons';
+import { APP } from '@/shared/config';
+import { Capture } from '@/widgets/Capture';
 
 export const HomePage = () => {
   // 예시 레시피 데이터
@@ -34,186 +36,354 @@ export const HomePage = () => {
   ];
 
   return (
-    <Container size="4">
-      {/* Hero Section */}
-      <Box py="8">
-        <Flex direction="column" align="center" gap="6" style={{ textAlign: 'center' }}>
-          <Heading size={{ initial: '6', md: '8' }} weight="bold" style={{ lineHeight: '1.2' }}>
-            후지필름 시뮬레이션 레시피
-          </Heading>
-          <Text
-            size={{ initial: '3', md: '5' }}
-            color="gray"
-            style={{
-              maxWidth: '600px',
-              lineHeight: '1.5',
-              padding: '0 16px',
-            }}
-          >
-            모바일에서 간편하게 사용할 수 있는 후지필름 카메라 설정 레시피를 찾아보세요
-          </Text>
+    <>
+      {/* Fixed Background Image */}
+      <Box
+        className="background-image"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundImage: 'url(/images/miku-main.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center top',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          zIndex: -1,
+          filter: 'brightness(0.3)', // 배경을 어둡게 해서 텍스트 가독성 향상
+        }}
+      />
 
-          {/* Search Bar */}
-          <Box style={{ width: '100%', maxWidth: '500px', padding: '0 16px' }}>
-            <Flex gap={{ initial: '2', md: '3' }} direction={{ initial: 'column', sm: 'row' }}>
-              <Box style={{ flex: 1, position: 'relative' }}>
-                <input
-                  type="text"
-                  placeholder="레시피 검색..."
-                  style={{
-                    width: '100%',
-                    padding: '14px 16px 14px 44px',
-                    borderRadius: '8px',
-                    border: '1px solid var(--color-border)',
-                    fontSize: '16px',
-                    backgroundColor: 'var(--color-surface)',
-                    outline: 'none',
-                    transition: 'all 0.2s ease',
-                  }}
-                />
-                <MagnifyingGlassIcon
-                  style={{
-                    position: 'absolute',
-                    left: '14px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    color: 'var(--gray-9)',
-                  }}
-                  width="18"
-                  height="18"
-                />
-              </Box>
-              <Button size={{ initial: '3', md: '3' }} style={{ minWidth: '80px' }}>
-                검색
-              </Button>
-            </Flex>
-          </Box>
-        </Flex>
-      </Box>
+      {/* Overlay for better readability */}
+      <Box
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6))',
+          zIndex: -1,
+        }}
+      />
 
-      {/* Featured Recipes */}
-      <Box py="6">
-        <Flex direction="column" gap="6">
-          <Heading size="6" weight="bold">
-            인기 레시피
-          </Heading>
+      <Container size="3" style={{ maxWidth: '100%', padding: '0 16px' }}>
+        {/* Hero Section */}
+        <Box py="8" pt="12">
+          <Flex direction="column" align="center" gap="6" style={{ textAlign: 'center' }}>
+            <Heading
+              size="7"
+              weight="bold"
+              style={{
+                lineHeight: '1.2',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+                fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
+              }}
+              color="teal"
+            >
+              {APP.FULL_NAME}
+            </Heading>
+            <Text
+              size="4"
+              style={{
+                maxWidth: '500px',
+                lineHeight: '1.6',
+                color: 'rgba(255,255,255,0.9)',
+                textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
+                fontSize: 'clamp(1rem, 3.5vw, 1.125rem)',
+              }}
+            >
+              모바일에서 간편하게 사용할 수 있는 후지필름 카메라 설정 레시피를 찾아보세요
+            </Text>
 
-          <Flex gap="4" direction={{ initial: 'column', sm: 'row' }} style={{ overflowX: 'auto' }}>
-            {featuredRecipes.map((recipe) => (
-              <Card
-                key={recipe.id}
-                style={{
-                  minWidth: '280px',
-                  cursor: 'pointer',
-                  transition: 'transform 0.2s ease',
-                }}
-                className="hover:scale-105"
-              >
-                <Flex direction="column" gap="3">
-                  {/* Recipe Image Placeholder */}
-                  <Box
+            {/* Search Bar */}
+            <Box style={{ width: '100%', maxWidth: '400px' }}>
+              <Flex gap="3" direction="column">
+                <Box style={{ position: 'relative' }}>
+                  <TextField.Root
+                    placeholder="레시피 검색..."
+                    size="3"
                     style={{
-                      height: '180px',
-                      backgroundColor: 'var(--color-surface)',
-                      borderRadius: '4px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                      backdropFilter: 'blur(10px)',
+                      border: '',
                     }}
+                    color="teal"
                   >
-                    <Text color="gray">레시피 미리보기</Text>
-                  </Box>
+                    <TextField.Slot>
+                      <MagnifyingGlassIcon height="16" width="16" color="teal" />
+                    </TextField.Slot>
+                  </TextField.Root>
+                </Box>
+                <Button size="3">검색</Button>
+              </Flex>
+            </Box>
+            <Capture />
+          </Flex>
+        </Box>
 
-                  {/* Recipe Info */}
-                  <Flex direction="column" gap="2">
-                    <Flex justify="between" align="start">
-                      <Heading size="4" weight="bold">
-                        {recipe.name}
-                      </Heading>
-                      <Badge variant="soft" color="blue">
-                        {recipe.category}
-                      </Badge>
-                    </Flex>
+        {/* Featured Recipes */}
+        <Box py="6">
+          <Flex direction="column" gap="6">
+            <Heading
+              size="6"
+              weight="bold"
+              style={{
+                color: 'white',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+                fontSize: 'clamp(1.25rem, 4vw, 1.5rem)',
+              }}
+            >
+              인기 레시피
+            </Heading>
 
-                    <Text size="2" color="gray">
-                      {recipe.description}
-                    </Text>
+            <Flex gap="4" direction="column">
+              {featuredRecipes.map((recipe) => (
+                <Card
+                  key={recipe.id}
+                  style={{
+                    backgroundColor: 'rgba(255,255,255,0.1)',
+                    backdropFilter: 'blur(20px)',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    borderRadius: '16px',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+                  }}
+                >
+                  <Flex direction="column" gap="4" p="4">
+                    {/* Recipe Image Placeholder */}
+                    <Box
+                      style={{
+                        height: '160px',
+                        backgroundColor: 'rgba(255,255,255,0.1)',
+                        borderRadius: '12px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        border: '1px solid rgba(255,255,255,0.1)',
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: 'rgba(255,255,255,0.7)',
+                          fontSize: '14px',
+                        }}
+                      >
+                        레시피 미리보기
+                      </Text>
+                    </Box>
 
-                    <Flex justify="between" align="center" mt="2">
-                      <Flex gap="3" align="center">
-                        <Flex gap="1" align="center">
-                          <HeartIcon width="14" height="14" color="red" />
-                          <Text size="2" color="gray">
-                            {recipe.likes}
-                          </Text>
-                        </Flex>
-                        <Flex gap="1" align="center">
-                          <StarIcon width="14" height="14" color="orange" />
-                          <Text size="2" color="gray">
-                            {recipe.rating}
-                          </Text>
-                        </Flex>
+                    {/* Recipe Info */}
+                    <Flex direction="column" gap="3">
+                      <Flex justify="between" align="start" gap="2">
+                        <Heading
+                          size="4"
+                          weight="bold"
+                          style={{
+                            color: 'white',
+                            fontSize: 'clamp(1rem, 3.5vw, 1.125rem)',
+                          }}
+                        >
+                          {recipe.name}
+                        </Heading>
+                        <Badge
+                          variant="solid"
+                          color="teal"
+                          style={{
+                            borderRadius: '8px',
+                            fontSize: '12px',
+                          }}
+                        >
+                          {recipe.category}
+                        </Badge>
                       </Flex>
-                      <Button variant="soft" size="1">
-                        보기
-                      </Button>
+
+                      <Text
+                        size="3"
+                        style={{
+                          color: 'rgba(255,255,255,0.8)',
+                          lineHeight: '1.5',
+                          fontSize: 'clamp(0.875rem, 3vw, 0.9375rem)',
+                        }}
+                      >
+                        {recipe.description}
+                      </Text>
+
+                      <Flex justify="between" align="center" mt="2">
+                        <Flex gap="4" align="center">
+                          <Flex gap="1" align="center">
+                            <HeartIcon width="16" height="16" style={{ color: '#ef4444' }} />
+                            <Text
+                              size="2"
+                              style={{
+                                color: 'rgba(255,255,255,0.7)',
+                                fontSize: '14px',
+                              }}
+                            >
+                              {recipe.likes}
+                            </Text>
+                          </Flex>
+                          <Flex gap="1" align="center">
+                            <StarIcon width="16" height="16" style={{ color: '#f59e0b' }} />
+                            <Text
+                              size="2"
+                              style={{
+                                color: 'rgba(255,255,255,0.7)',
+                                fontSize: '14px',
+                              }}
+                            >
+                              {recipe.rating}
+                            </Text>
+                          </Flex>
+                        </Flex>
+                        <Button
+                          style={{
+                            backgroundColor: 'rgba(255,255,255,0.2)',
+                            color: 'white',
+                            border: '1px solid rgba(255,255,255,0.3)',
+                            borderRadius: '8px',
+                            fontSize: '14px',
+                            fontWeight: '500',
+                            backdropFilter: 'blur(10px)',
+                          }}
+                        >
+                          보기
+                        </Button>
+                      </Flex>
                     </Flex>
                   </Flex>
+                </Card>
+              ))}
+            </Flex>
+          </Flex>
+        </Box>
+
+        {/* Categories */}
+        <Box py="6">
+          <Flex direction="column" gap="4">
+            <Heading
+              size="6"
+              weight="bold"
+              style={{
+                color: 'white',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+                fontSize: 'clamp(1.25rem, 4vw, 1.5rem)',
+              }}
+            >
+              카테고리
+            </Heading>
+
+            <Flex wrap="wrap" gap="3">
+              {['풍경', '인물', '일상', '흑백', '빈티지', '모던'].map((category) => (
+                <Button
+                  key={category}
+                  style={{
+                    backgroundColor: 'rgba(255,255,255,0.15)',
+                    color: 'white',
+                    border: '1px solid rgba(255,255,255,0.3)',
+                    borderRadius: '12px',
+                    padding: '12px 20px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    backdropFilter: 'blur(10px)',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                  }}
+                >
+                  {category}
+                </Button>
+              ))}
+            </Flex>
+          </Flex>
+        </Box>
+
+        {/* Additional Content for Scroll Testing */}
+        <Box py="6" pb="12">
+          <Flex direction="column" gap="6">
+            <Heading
+              size="6"
+              weight="bold"
+              style={{
+                color: 'white',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+                fontSize: 'clamp(1.25rem, 4vw, 1.5rem)',
+              }}
+            >
+              최근 추가된 레시피
+            </Heading>
+
+            {/* Duplicate recipes for scroll testing */}
+            {Array.from({ length: 5 }).map((_, index) => (
+              <Card
+                key={`recent-${index}`}
+                style={{
+                  backgroundColor: 'rgba(255,255,255,0.1)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '16px',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+                }}
+              >
+                <Flex direction="column" gap="4" p="4">
+                  <Heading
+                    size="4"
+                    weight="bold"
+                    style={{
+                      color: 'white',
+                      fontSize: 'clamp(1rem, 3.5vw, 1.125rem)',
+                    }}
+                  >
+                    {['Velvia', 'Provia', 'Astia', 'Classic Chrome', 'Eterna'][index]} 레시피
+                  </Heading>
+                  <Text
+                    size="3"
+                    style={{
+                      color: 'rgba(255,255,255,0.8)',
+                      lineHeight: '1.5',
+                      fontSize: 'clamp(0.875rem, 3vw, 0.9375rem)',
+                    }}
+                  >
+                    스크롤 테스트를 위한 더미 콘텐츠입니다. 헤더가 스크롤에 따라 숨겨지고 나타나는지 확인해보세요.
+                  </Text>
+                  <Box
+                    style={{
+                      height: '120px',
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                      borderRadius: '12px',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                    }}
+                  >
+                    <Flex align="center" justify="center" style={{ height: '100%' }}>
+                      <Text
+                        style={{
+                          color: 'rgba(255,255,255,0.7)',
+                          fontSize: '14px',
+                        }}
+                      >
+                        레시피 이미지 영역
+                      </Text>
+                    </Flex>
+                  </Box>
+                  <Text
+                    size="2"
+                    style={{
+                      color: 'rgba(255,255,255,0.7)',
+                      lineHeight: '1.4',
+                      fontSize: '13px',
+                    }}
+                  >
+                    이 레시피는 후지필름의 {['Velvia', 'Provia', 'Astia', 'Classic Chrome', 'Eterna'][index]} 필름
+                    시뮬레이션을 모바일에서 재현하기 위한 설정입니다.
+                  </Text>
                 </Flex>
               </Card>
             ))}
           </Flex>
-        </Flex>
-      </Box>
-
-      {/* Categories */}
-      <Box py="6">
-        <Flex direction="column" gap="4">
-          <Heading size="6" weight="bold">
-            카테고리
-          </Heading>
-
-          <Flex wrap="wrap" gap="3">
-            {['풍경', '인물', '일상', '흑백', '빈티지', '모던'].map((category) => (
-              <Button key={category} variant="outline" size="2">
-                {category}
-              </Button>
-            ))}
-          </Flex>
-        </Flex>
-      </Box>
-
-      {/* Additional Content for Scroll Testing */}
-      <Box py="6">
-        <Flex direction="column" gap="6">
-          <Heading size="6" weight="bold">
-            최근 추가된 레시피
-          </Heading>
-
-          {/* Duplicate recipes for scroll testing */}
-          {Array.from({ length: 10 }).map((_, index) => (
-            <Card key={`recent-${index}`} style={{ padding: '20px' }}>
-              <Flex direction="column" gap="3">
-                <Heading size="4" weight="bold">
-                  레시피 #{index + 1}
-                </Heading>
-                <Text size="3" color="gray">
-                  스크롤 테스트를 위한 더미 콘텐츠입니다. 헤더가 스크롤에 따라 숨겨지고 나타나는지 확인해보세요.
-                </Text>
-                <Box style={{ height: '150px', backgroundColor: 'var(--color-surface)' }}>
-                  <Flex align="center" justify="center" style={{ height: '100%' }}>
-                    <Text color="gray">레시피 이미지 영역</Text>
-                  </Flex>
-                </Box>
-                <Text size="2" color="gray">
-                  이 레시피는 후지필름의 {['Velvia', 'Provia', 'Astia', 'Classic Chrome'][index % 4]} 필름 시뮬레이션을
-                  모바일에서 재현하기 위한 설정입니다. 스크롤을 위아래로 움직여서 헤더 애니메이션을 확인해보세요.
-                </Text>
-              </Flex>
-            </Card>
-          ))}
-        </Flex>
-      </Box>
-    </Container>
+        </Box>
+      </Container>
+    </>
   );
 };

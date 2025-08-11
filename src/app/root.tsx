@@ -14,7 +14,7 @@ import '../main.css';
 export default function Root() {
   return (
     <StrictMode>
-      <Theme>
+      <Theme accentColor="teal" grayColor="slate">
         <Layout header={<Header />} footer={<Footer />}>
           <Outlet />
         </Layout>

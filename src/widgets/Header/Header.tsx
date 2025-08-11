@@ -3,6 +3,7 @@ import { Box, Container, Flex, Heading, IconButton, Text } from '@radix-ui/theme
 import { HamburgerMenuIcon, CameraIcon } from '@radix-ui/react-icons';
 import { Link, useLocation } from 'react-router';
 import { useSpyElem } from '@/shared/lib/hooks';
+import { ROUTES, APP } from '@/shared/config';
 import { MobileDrawer } from './MobileDrawer';
 
 export const Header = () => {
@@ -15,8 +16,8 @@ export const Header = () => {
 
   // 현재 경로에 따른 활성 상태 확인
   const isActive = (path: string) => {
-    if (path === '/' && location.pathname === '/') return true;
-    if (path !== '/' && location.pathname.startsWith(path)) return true;
+    if (path === ROUTES.HOME && location.pathname === ROUTES.HOME) return true;
+    if (path !== ROUTES.HOME && location.pathname.startsWith(path)) return true;
     return false;
   };
 
@@ -31,9 +32,10 @@ export const Header = () => {
         width="100%"
         style={{
           zIndex: 1000,
-          borderBottom: '1px solid var(--color-border)',
-          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
-          backgroundColor: 'var(--color-background)',
+          borderBottom: '1px solid rgba(57, 197, 187, 0.2)',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          backdropFilter: 'blur(20px)',
           marginTop: `${marginTop}px`,
         }}
       >
@@ -43,60 +45,83 @@ export const Header = () => {
               <Flex align="center" justify="between" width="100%">
                 {/* Logo */}
                 <Flex align="center" gap="2" style={{ minWidth: 0, flex: '0 0 auto' }}>
-                  <CameraIcon width="20" height="20" />
-                  <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <Heading size="4" weight="bold" style={{ whiteSpace: 'nowrap' }}>
-                      Fuji Film Recipes
+                  <CameraIcon width="20" height="20" style={{ color: 'var(--teal-9)' }} />
+                  <Link to={ROUTES.HOME} style={{ textDecoration: 'none', color: 'white' }}>
+                    <Heading
+                      size="4"
+                      weight="bold"
+                      style={{
+                        whiteSpace: 'nowrap',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
+                      }}
+                    >
+                      {APP.FULL_NAME}
                     </Heading>
                   </Link>
                 </Flex>
 
                 {/* Mobile Menu Button */}
                 <Box display={{ initial: 'block', md: 'none' }} style={{ flex: '0 0 auto' }}>
-                  <IconButton variant="ghost" size="2" onClick={() => setIsMobileMenuOpen(true)}>
+                  <IconButton variant="ghost" size="2" onClick={() => setIsMobileMenuOpen(true)} color="teal">
                     <HamburgerMenuIcon width="18" height="18" />
                   </IconButton>
                 </Box>
 
                 {/* Desktop Navigation */}
                 <Flex gap="4" align="center" display={{ initial: 'none', md: 'flex' }} style={{ flex: '0 0 auto' }}>
-                  <Link to="/recipes" style={{ textDecoration: 'none' }}>
+                  <Link to={ROUTES.RECIPES} style={{ textDecoration: 'none' }}>
                     <Text
                       size="2"
                       weight="medium"
                       style={{
                         whiteSpace: 'nowrap',
-                        color: isActive('/recipes') ? 'var(--accent-9)' : 'inherit',
+                        color: isActive(ROUTES.RECIPES) ? 'var(--teal-9)' : 'rgba(255,255,255,0.9)',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
+                        transition: 'color 0.2s ease',
                       }}
                     >
                       레시피
                     </Text>
                   </Link>
-                  <Link to="/" style={{ textDecoration: 'none' }}>
+                  <Link to={ROUTES.HOME} style={{ textDecoration: 'none' }}>
                     <Text
                       size="2"
                       weight="medium"
                       style={{
                         whiteSpace: 'nowrap',
-                        color: isActive('/') ? 'var(--accent-9)' : 'inherit',
+                        color: isActive(ROUTES.HOME) ? 'var(--teal-9)' : 'rgba(255,255,255,0.9)',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
+                        transition: 'color 0.2s ease',
                       }}
                     >
                       인기
                     </Text>
                   </Link>
-                  <Link to="/favorites" style={{ textDecoration: 'none' }}>
+                  <Link to={ROUTES.FAVORITES} style={{ textDecoration: 'none' }}>
                     <Text
                       size="2"
                       weight="medium"
                       style={{
                         whiteSpace: 'nowrap',
-                        color: isActive('/favorites') ? 'var(--accent-9)' : 'inherit',
+                        color: isActive(ROUTES.FAVORITES) ? 'var(--teal-9)' : 'rgba(255,255,255,0.9)',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
+                        transition: 'color 0.2s ease',
                       }}
                     >
                       즐겨찾기
                     </Text>
                   </Link>
-                  <Text size="2" weight="medium" style={{ cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                  <Text
+                    size="2"
+                    weight="medium"
+                    style={{
+                      cursor: 'pointer',
+                      whiteSpace: 'nowrap',
+                      color: 'rgba(255,255,255,0.9)',
+                      textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
+                      transition: 'color 0.2s ease',
+                    }}
+                  >
                     설정
                   </Text>
                 </Flex>

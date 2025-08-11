@@ -8,3 +8,42 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* 하츠네 미쿠 브랜드 컬러 적용 */
+.radix-themes {
+  --miku-brand-color: #39c5bb;
+
+  /* Teal 컬러 스케일을 미쿠 브랜드 컬러로 오버라이드 */
+  --teal-9: var(--miku-brand-color);
+  --teal-a9: var(--miku-brand-color);
+  --teal-10: #2fb3a8;
+  --teal-a10: #2fb3a8;
+
+  /* 포커스 컬러도 미쿠 컬러로 설정 */
+  --focus-8: var(--miku-brand-color);
+}
+
+/* 모바일 환경에서 배경 이미지 최적화 */
+@media (max-width: 768px) {
+  .background-image {
+    background-position: center 20% !important;
+    background-size: auto 100% !important;
+    background-attachment: scroll !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .background-image {
+    background-position: center 15% !important;
+    background-size: auto 110% !important;
+    background-attachment: scroll !important;
+  }
+}
+
+/* 세로 화면 모드에서 추가 최적화 */
+@media (max-width: 768px) and (orientation: portrait) {
+  .background-image {
+    background-position: center 10% !important;
+    background-size: auto 120% !important;
+  }
+}

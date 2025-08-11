@@ -9,7 +9,7 @@ interface LayoutProps {
 
 export const Layout = ({ children, header, footer }: LayoutProps) => {
   return (
-    <Flex direction="column" style={{ minHeight: '100vh' }} px="4">
+    <Flex direction="column" style={{ minHeight: '100vh' }}>
       {/* Header - fixed positioning */}
       {header}
 

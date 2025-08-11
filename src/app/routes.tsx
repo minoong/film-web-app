@@ -3,6 +3,7 @@ import Root from './root';
 import HomePage from '../pages/HomePage/route';
 import { RecipesPage } from '../pages/RecipesPage';
 import { FavoritesPage } from '../pages/FavoritesPage';
+import { ROUTES } from '@/shared/config';
 
 /**
  * 애플리케이션의 라우트 설정
@@ -10,7 +11,7 @@ import { FavoritesPage } from '../pages/FavoritesPage';
  */
 export const routes: RouteObject[] = [
   {
-    path: '/',
+    path: ROUTES.HOME,
     element: <Root />,
     children: [
       {
@@ -18,24 +19,24 @@ export const routes: RouteObject[] = [
         element: <HomePage />,
       },
       {
-        path: 'recipes',
+        path: ROUTES.RECIPES.slice(1), // Remove leading slash for nested routes
         element: <RecipesPage />,
       },
       {
-        path: 'favorites',
+        path: ROUTES.FAVORITES.slice(1), // Remove leading slash for nested routes
         element: <FavoritesPage />,
       },
       // 추후 추가 예정 라우트들
       // {
-      //   path: 'recipes/:id',
+      //   path: ROUTES.RECIPE_DETAIL.slice(1),
       //   element: <RecipeDetailPage />,
       // },
       // {
-      //   path: 'settings',
+      //   path: ROUTES.SETTINGS.slice(1),
       //   element: <SettingsPage />,
       // },
       // {
-      //   path: 'categories/:category',
+      //   path: ROUTES.CATEGORIES.slice(1),
       //   element: <CategoryPage />,
       // },
     ],

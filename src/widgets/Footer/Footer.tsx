@@ -1,5 +1,6 @@
 import { Box, Container, Flex, Text, Link } from '@radix-ui/themes';
 import { GitHubLogoIcon, TwitterLogoIcon, InstagramLogoIcon } from '@radix-ui/react-icons';
+import { APP } from '@/shared/config';
 
 export const Footer = () => {
   return (
@@ -63,7 +64,7 @@ export const Footer = () => {
           {/* Bottom Footer */}
           <Flex direction={{ initial: 'column', sm: 'row' }} justify="between" align="center" gap="4">
             <Text size="2" color="gray">
-              © 2025 Se-kai Film Recipes. 모든 권리 보유.
+              © 2025 {APP.FULL_NAME}. 모든 권리 보유.
             </Text>
 
             {/* Social Links */}
