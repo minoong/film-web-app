@@ -1,7 +1,7 @@
-import { Box, Container, Flex, Heading, Text, Button, Card, Badge, TextField } from '@radix-ui/themes';
-import { MagnifyingGlassIcon, HeartIcon, StarIcon } from '@radix-ui/react-icons';
+import { Box, Container, Flex, Heading, Text, Button, Card, Badge } from '@radix-ui/themes';
+import { HeartIcon, StarIcon, CameraIcon } from '@radix-ui/react-icons';
+import { Link } from 'react-router';
 import { APP } from '@/shared/config';
-import { Capture } from '@/widgets/Capture';
 
 export const HomePage = () => {
   // 예시 레시피 데이터
@@ -95,32 +95,31 @@ export const HomePage = () => {
                 fontSize: 'clamp(1rem, 3.5vw, 1.125rem)',
               }}
             >
-              모바일에서 간편하게 사용할 수 있는 후지필름 카메라 설정 레시피를 찾아보세요
+              모바일에서 간편하게 사용할 수 있는 {APP.NAME} 카메라 설정 레시피를 찾아보세요
             </Text>
 
-            {/* Search Bar */}
+            {/* Photo Editor Button */}
             <Box style={{ width: '100%', maxWidth: '400px' }}>
-              <Flex gap="3" direction="column">
-                <Box style={{ position: 'relative' }}>
-                  <TextField.Root
-                    placeholder="레시피 검색..."
-                    size="3"
-                    style={{
-                      backgroundColor: 'rgba(255,255,255,0.1)',
-                      backdropFilter: 'blur(10px)',
-                      border: '',
-                    }}
-                    color="teal"
-                  >
-                    <TextField.Slot>
-                      <MagnifyingGlassIcon height="16" width="16" color="teal" />
-                    </TextField.Slot>
-                  </TextField.Root>
-                </Box>
-                <Button size="3">검색</Button>
-              </Flex>
+              <Link to="/photo-editor" style={{ textDecoration: 'none' }}>
+                <Button
+                  size="4"
+                  style={{
+                    width: '100%',
+                    backgroundColor: 'rgba(57, 197, 187, 0.8)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(57, 197, 187, 0.4)',
+                    boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+                    fontSize: '18px',
+                    fontWeight: '600',
+                    padding: '16px 24px',
+                    transition: 'all 0.3s ease',
+                  }}
+                >
+                  <CameraIcon width="20" height="20" />
+                  포토 에디터 시작하기
+                </Button>
+              </Link>
             </Box>
-            <Capture />
           </Flex>
         </Box>
 
@@ -375,7 +374,7 @@ export const HomePage = () => {
                       fontSize: '13px',
                     }}
                   >
-                    이 레시피는 후지필름의 {['Velvia', 'Provia', 'Astia', 'Classic Chrome', 'Eterna'][index]} 필름
+                    이 레시피는 {APP.NAME}의 {['Velvia', 'Provia', 'Astia', 'Classic Chrome', 'Eterna'][index]} 필름
                     시뮬레이션을 모바일에서 재현하기 위한 설정입니다.
                   </Text>
                 </Flex>

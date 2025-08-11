@@ -1,4 +1,5 @@
 import { Box, Container, Heading, Text } from '@radix-ui/themes';
+import { APP } from '@/shared/config';
 
 /**
  * 레시피 목록 페이지
@@ -11,7 +12,7 @@ export const RecipesPage = () => {
           모든 레시피
         </Heading>
         <Text size="5" color="gray">
-          후지필름 시뮬레이션 레시피 목록이 여기에 표시됩니다.
+          {APP.NAME} 시뮬레이션 레시피 목록이 여기에 표시됩니다.
         </Text>
       </Box>
     </Container>

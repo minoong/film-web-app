@@ -1,5 +1,4 @@
 import { Box, Container, Flex, Text, Link } from '@radix-ui/themes';
-import { GitHubLogoIcon, TwitterLogoIcon, InstagramLogoIcon } from '@radix-ui/react-icons';
 import { APP } from '@/shared/config';
 
 export const Footer = () => {
@@ -20,7 +19,7 @@ export const Footer = () => {
                 Se-kai Film Recipes
               </Text>
               <Text size="2" color="gray">
-                모바일을 위한 후지필름 시뮬레이션 레시피
+                모바일을 위한 {APP.NAME} 시뮬레이션 레시피
               </Text>
             </Flex>
 
@@ -62,22 +61,17 @@ export const Footer = () => {
           <Box style={{ height: '1px', backgroundColor: 'var(--color-border)' }} />
 
           {/* Bottom Footer */}
-          <Flex direction={{ initial: 'column', sm: 'row' }} justify="between" align="center" gap="4">
-            <Text size="2" color="gray">
-              © 2025 {APP.FULL_NAME}. 모든 권리 보유.
-            </Text>
-
-            {/* Social Links */}
-            <Flex gap="4" align="center">
-              <Link href="#" style={{ color: 'var(--color-text-low-contrast)' }}>
-                <GitHubLogoIcon width="16" height="16" />
-              </Link>
-              <Link href="#" style={{ color: 'var(--color-text-low-contrast)' }}>
-                <TwitterLogoIcon width="16" height="16" />
-              </Link>
-              <Link href="#" style={{ color: 'var(--color-text-low-contrast)' }}>
-                <InstagramLogoIcon width="16" height="16" />
-              </Link>
+          <Flex direction="column" justify="center" align="center" gap="4">
+            <Flex direction="column" gap="1" align="center">
+              <Text size="1" color="gray">
+                프로젝트 세카이 캐릭터 설정 및 이미지 출처:
+              </Text>
+              <Text size="1" color="gray">
+                Project SEKAI COLORFUL STAGE!
+              </Text>
+              <Text size="1" color="gray">
+                © 2025 {APP.FULL_NAME}. Film simulation recipes.
+              </Text>
             </Flex>
           </Flex>
         </Flex>

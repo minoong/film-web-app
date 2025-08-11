@@ -64,7 +64,7 @@ export const MobileDrawer = ({ isOpen, onClose }: MobileDrawerProps) => {
       to: ROUTES.RECIPES,
       icon: <CookieIcon width="18" height="18" />,
       label: '모든 레시피',
-      description: '후지필름 시뮬레이션 레시피',
+      description: `${APP.NAME} 시뮬레이션 레시피`,
       badge: 'New',
     },
     {
